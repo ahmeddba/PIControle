@@ -10,3 +10,4 @@ const Application = mongoose.model('Application', applicationSchema);
 
 module.exports = Application;
 
+    

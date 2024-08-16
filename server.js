@@ -12,3 +12,11 @@ app.listen(PORT , () => {
 })
 
 connect()
+
+app.use('/auth' , require('./Routers/AuthRoute'))
+app.use('/company' , require('./Routers/CompanyRoute'))
+app.use('/notification' , require('./Routers/NotificationRoute'))
+app.use('/follow' , require('./Routers/FollowRoute'))
+app.use('/favorite' , require('./Routers/FavoriteRoute'))
+app.use('/job' , require('./Routers/JobOffersRoute'))
+app.use('application' , require('./Routers/ApplicationRoute'))
