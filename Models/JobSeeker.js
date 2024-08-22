@@ -17,8 +17,14 @@ const jobSeekerSchema = new mongoose.Schema({
         startDate: Date,
         endDate: Date
     }],
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'JobOffer' }],
-    follows: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Company' }]
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'JobOffer'
+    }],
+    follows: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
+    }]
 }, { timestamps: true });
 
 const JobSeeker = User.discriminator('JobSeeker', jobSeekerSchema);

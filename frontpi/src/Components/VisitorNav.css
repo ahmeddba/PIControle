@@ -1,0 +1,11 @@
+.signin {
+    background: #34368a !important;
+    color: white;
+    border: white 1px solid;
+}
+.signin:hover {
+    background: #34368a !important;
+    color: white !important;
+    border: white 1px solid !important;
+    opacity: 0.8;
+}

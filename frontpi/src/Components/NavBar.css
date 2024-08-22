@@ -1,0 +1,59 @@
+.cont{
+background-color: white;
+position: fixed;
+top: 0;
+z-index: 100;
+left: 0;
+right: 0;
+height: 60px;
+display: flex;
+justify-content: space-around;
+gap: 15px;
+align-items: center;
+padding: 0 5%;
+}
+
+.issar{
+    flex:1;
+    z-index: 6;
+    height: 100%;
+}
+.west{
+    flex: 3;
+    z-index: 6;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.imin{
+    flex: 1;
+    z-index: 6;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0;
+    margin: 2.5% 5% 0 5%;
+    font-size: 12px;
+    cursor: pointer;
+}
+.box > p{
+    color: #34368a;
+}
+.prof{
+    border-radius: 100%;
+}
+
+.down{
+    color: #34368a;
+}
