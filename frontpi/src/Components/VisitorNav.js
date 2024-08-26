@@ -4,10 +4,11 @@ import './NavBar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faBriefcase, faNewspaper, faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
 
-
+const navigate = useNavigate()
   return (
     <div className='cont'>
         <div className='issar'>
@@ -29,8 +30,8 @@ const NavBar = () => {
 
         </div>
         <div className='imin'>
-        <Button>Sign in</Button>
-        <Button className='signin'>Sign up</Button>
+        <Button onClick={() => navigate('/login')}>Sign in</Button>
+        <Button className='signin' onClick={() => navigate('/register')}>Sign up</Button>
         </div>
     </div>
   )

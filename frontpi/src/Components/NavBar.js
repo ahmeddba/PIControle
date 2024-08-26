@@ -4,12 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faBriefcase, faHouse, faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutt } from '../JS/Actions/AuthActions';
 
 const NavBar = () => {
-
+const user = useSelector(state => state.user)
+const dispatch = useDispatch()
+const navigate = useNavigate()
     const items = [
         {
-          label: <a href="https://www.antgroup.com">Profile</a>,
+          label: user && <Link to={`/prof/${user._id}`} >Profile</Link>,
           key: '0',
         },
         {
@@ -23,6 +28,7 @@ const NavBar = () => {
           label: 'Log Out',
           danger: true ,
           key: '3',
+          onClick:() => dispatch(logoutt(navigate))
         },
       ];
   return (
@@ -32,19 +38,19 @@ const NavBar = () => {
         </div>
         <div className='west'>
             <div className='box'>
-            <FontAwesomeIcon icon={faHouse} style={{color:"#59bce7"}} size='2xl'/>
+            <FontAwesomeIcon icon={faHouse} style={{color:"#34368a"}} size='2xl'/>
             <p style={{fontWeight:500 , justifySelf:'flex-start'}}>Home</p>
             </div>
             <div className='box'>
-            <FontAwesomeIcon icon={faPeopleGroup} style={{color:"#59bce7"}} size='2xl'/>
+            <FontAwesomeIcon icon={faPeopleGroup} style={{color:"#34368a"}} size='2xl'/>
             <p style={{fontWeight:500 , justifySelf:'flex-start'}}>Network</p>
             </div>
             <div className='box'>
-            <FontAwesomeIcon icon={faBriefcase} style={{color:"#59bce7"}} size='2xl'/>
+            <FontAwesomeIcon icon={faBriefcase} style={{color:"#34368a"}} size='2xl'/>
             <p style={{fontWeight:500 , justifySelf:'flex-start'}}>Offers</p>
             </div>
             <div className='box'>
-            <FontAwesomeIcon icon={faBell} style={{color:"#59bce7"}} size='2xl'/>
+            <FontAwesomeIcon icon={faBell} style={{color:"#34368a"}} size='2xl'/>
             <p style={{fontWeight:500 , justifySelf:'flex-start'}}>Notification</p>
             </div>
         </div>
@@ -55,12 +61,11 @@ const NavBar = () => {
     }}
     trigger={['click']}
   >
-    <a onClick={(e) => e.preventDefault()}>
       <Space>
         <img src='/prof.jpg' alt='profile' height={35} width={35} className='prof' />
         <DownOutlined className='down'/>
       </Space>
-    </a>
+
   </Dropdown>
         </div>
     </div>

@@ -1,25 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Signin.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import { Button, Form, Input, Select } from 'antd'
 import Lottie from 'lottie-react'
 import sign from '../Animations/home.json'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { register } from '../JS/Actions/AuthActions'
 
 
 const Signup = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [newUser , setNewUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role:null
+  })
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  const handleChange = (e)=> {
+    setNewUser({...newUser , [e.target.name] : e.target.value})
+  }
+  const handleChangeS = (e) => {
+    setNewUser({...newUser , role: e})
+   }
+
+   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  // Function to check if all attributes are non-null
+  const checkIfAllAttributesFilled = () => {
+    return Object.values(newUser).every(attr => attr !== null && attr !== '');
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+
+  // Effect to update button state based on newUser attributes
+  useEffect(() => {
+    setIsButtonDisabled(!checkIfAllAttributesFilled());
+  }, [newUser]);
   return (
   <>
     <div className='contSignin'>
         <div className='fou9'>
-          <FontAwesomeIcon icon={faCircleLeft} style={{color: "#34368a",marginLeft:'8%' , cursor:'pointer'}} size='2xl'/>
+          <FontAwesomeIcon icon={faCircleLeft} style={{color: "#34368a",marginLeft:'8%' , cursor:'pointer'}} size='2xl' onClick={() => navigate('/')}/>
           <h1>Register</h1>
         </div>
         <div className='louta'>
@@ -38,9 +61,8 @@ const Signup = () => {
     initialValues={{
       remember: true,
     }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
+
+    autoComplete="on"
   >
      <Form.Item
       label="name"
@@ -52,7 +74,7 @@ const Signup = () => {
         },
       ]}
     >
-      <Input />
+      <Input  name='name' onChange={handleChange}/>
     </Form.Item>
     <Form.Item
       label="email"
@@ -62,9 +84,13 @@ const Signup = () => {
           required: true,
           message: 'Please input your email!',
         },
+        {
+          type: 'email',
+          message: 'Please enter a valid email!',
+        },
       ]}
     >
-      <Input />
+      <Input name='email'  onChange={handleChange} />
     </Form.Item>
 
     <Form.Item
@@ -77,7 +103,19 @@ const Signup = () => {
         },
       ]}
     >
-      <Input.Password />
+      <Input.Password  name='password'  onChange={handleChange}/>
+    </Form.Item>
+    <Form.Item
+      label="title"
+      name="title"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your title!',
+        },
+      ]}
+    >
+      <Input name='title'  onChange={handleChange} />
     </Form.Item>
     <Form.Item
     label="Account type"
@@ -101,14 +139,15 @@ const Signup = () => {
         {
           value: 'JobSeeker',
           name: 'role',
-          label:"Recruiter"
+          label:"Job Seeker "
         },
         {
           value: 'HRRepresentative',
           name: 'role',
-          label:"Job seeker"
+          label:"Recruiter"
         }
       ]}
+      onChange={handleChangeS}
     />
     </Form.Item>
     <Form.Item
@@ -117,7 +156,8 @@ const Signup = () => {
         span: 16,
       }}
     >
-      <Button className='sub' type="primary" htmlType="submit">
+      <Button className='sub' type="primary" htmlType="submit" onClick={() => dispatch(register(newUser,navigate))}   disabled={isButtonDisabled}  // Button is disabled until all attributes are filled
+      >
         Submit
       </Button>
     </Form.Item>
