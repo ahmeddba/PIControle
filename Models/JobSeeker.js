@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const User = require('./User');
 
 const jobSeekerSchema = new mongoose.Schema({
-    skills: [{ type: String }],
+    skills: [{
+        type: String
+    }],
     workExperience: [{
         company: String,
         role: String,

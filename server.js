@@ -12,6 +12,11 @@ app.listen(PORT , () => {
 })
 
 connect()
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000', // React app origin
+}));
+
 
 app.use('/auth' , require('./Routers/AuthRoute'))
 app.use('/company' , require('./Routers/CompanyRoute'))
@@ -19,4 +24,5 @@ app.use('/notification' , require('./Routers/NotificationRoute'))
 app.use('/follow' , require('./Routers/FollowRoute'))
 app.use('/favorite' , require('./Routers/FavoriteRoute'))
 app.use('/job' , require('./Routers/JobOffersRoute'))
-app.use('application' , require('./Routers/ApplicationRoute'))
+app.use('/application' , require('./Routers/ApplicationRoute'))
+app.use('/interv' , require('./Routers/InterviewRoute'))

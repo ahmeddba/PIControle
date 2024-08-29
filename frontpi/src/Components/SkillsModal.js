@@ -17,7 +17,7 @@ const SkillsModal = ({open , handleOk , confirmLoading , handleCancel }) => {
     const handlechange = (e) => {
         setSkill(e.target.value)
     }
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.AuthReducer.user)
 
 return (
     <Modal

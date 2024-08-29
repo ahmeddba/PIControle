@@ -13,7 +13,7 @@ const EducationModal = ({ open, handleOk, confirmLoading, handleCancel }) => {
     }); // State for the education input
 
     const dispatch = useDispatch(); // Redux dispatch function
-    const user = useSelector(state => state.user); // Get the current user from the Redux state
+    const user = useSelector(state => state.AuthReducer.user); // Get the current user from the Redux state
 
     // Function to handle the form submission
     const handleUpdate = () => {

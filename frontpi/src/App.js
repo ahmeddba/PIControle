@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { current } from './JS/Actions/AuthActions';
 import NotFound from './Pages/NotFound';
 import Accueil from './Pages/Accueil';
+import InterviewList from './Pages/InterviewList';
 
 
 function App() {
@@ -18,7 +19,6 @@ function App() {
   const currentUrl = location.pathname + location.search + location.hash;
   console.log(currentUrl)
   const dispatch = useDispatch();
-  const isAuth = useSelector(state => state.isAuth);
   const user = localStorage.getItem('user');
   const navigate = useNavigate();
 
@@ -39,9 +39,21 @@ useEffect(() => {
           {
             user ?
             <>
+
+             {
+              user.role === "JobSeeker" ?
+              <>
+
+              </>
+              :
+              <>
+                <Route path='/interv' element={< InterviewList />} />
+              </>
+             }
               <Route path='/' element={<Navigate to="/acc" />} />
               <Route path='/prof/:id' element={<Profile/>}/>
               <Route path='/acc' element={<Accueil/>}/>
+
             </>
             :
             <>

@@ -62,10 +62,10 @@ const jwt = require('jsonwebtoken');
         }
     }
 
-    exports.updateProfile = async (req, res) => {
+    exports.updateSkills = async (req, res) => {
         try {
             const { id } = req.params;  // Get user ID from request parameters
-            const updatedData = req.body;  // Get updated profile data from request body
+            const { skill, workExperience, education } = req.body; // Get the new skill, work experience, and education from the request body
 
             // Find the user by ID
             const foundUser = await User.findById(id);
@@ -73,11 +73,26 @@ const jwt = require('jsonwebtoken');
                 return res.status(404).send({ errors: [{ msg: "User not found" }] });
             }
 
-            // Update the user's profile with the new data
-            const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true, runValidators: true }).select('-password');
+            // Add the new skill to the user's skills array, if it's not already there
+            if (skill && !foundUser.skills.includes(skill)) {
+                foundUser.skills.push(skill);
+            }
+
+            // Add the new work experience to the user's workExperience array
+            if (workExperience) {
+                foundUser.workExperience.push(workExperience);
+            }
+
+            // Add the new education entry to the user's education array
+            if (education) {
+                foundUser.education.push(education);
+            }
+
+            // Save the updated user profile
+            const updatedUser = await foundUser.save();
 
             // Send a success response with the updated user profile
-            res.status(200).send({ success: { msg: "Profile updated successfully" }, user: updatedUser });
+            res.status(200).send({ success: { msg: "Profile updated successfully", user: updatedUser } });
         } catch (error) {
             // Handle any errors that occur during the update
             res.status(400).send({ errors: [{ msg: error.message }] });
@@ -85,3 +100,16 @@ const jwt = require('jsonwebtoken');
     };
 
 
+exports.getUser = async (req, res) => {
+    try {
+        const { id } = req.params;  // Get user ID from request parameters
+        const foundUser = await User.findById({_id:id}).populate('jobOffers').populate('companyId'); // Find the user by ID and populate the jobOffers and companyId fields
+        if (!foundUser) {
+            return res.status(404).send({ errors: [{ msg: "User not found" }] });
+        }
+        res.status(200).send({ success: { msg: "User found", user: foundUser } });
+    } catch (error) {
+        res.status(400).send({ errors: [{ msg: error.message }] });
+
+    }
+}

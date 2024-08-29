@@ -1,0 +1,37 @@
+.cardd{
+    height: 250px;
+    width: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px #34368a solid;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 1% 3%;
+}
+.cal{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    align-items: center;
+    cursor: pointer;
+    color: #34368a;
+    flex:1;
+}
+.inf{
+    flex: 5;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.inf span {
+    font-weight: 500;
+}
+.cardd .inf p {
+    text-align: start;
+    margin: 0 0 0 10px;
+}

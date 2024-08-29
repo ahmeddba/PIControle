@@ -90,7 +90,9 @@ body {
     align-items: center;
     gap: 10px;
 }
-
+.headP .infoP1 .right ul{
+    height:120px;
+}
 .infoP ul {
     list-style-type: none;
     padding: 0;
@@ -105,9 +107,10 @@ body {
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 110px;
+    height: 310px;
     overflow-y: auto;
     overflow-x: hidden;
+
 }
 
 ul::-webkit-scrollbar {
@@ -129,4 +132,28 @@ ul::-webkit-scrollbar-thumb {
     border-radius: 5px;
     margin: 0;
     padding: 5px 10px;
+}
+
+.jobOffer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 60%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: #f4f2ee;
+    border: 1px solid #34368a;
+    cursor: pointer;
+}
+
+.cal{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    align-items: center;
+    cursor: pointer;
+    color: #34368a;
 }
