@@ -1,0 +1,22 @@
+.intervCont{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+    margin:1% auto;
+    flex-wrap: wrap;
+}
+.but{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:50%;
+}
+.bigCont{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}

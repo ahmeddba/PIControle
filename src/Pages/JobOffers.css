@@ -1,0 +1,31 @@
+.contt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 3% auto 0 auto;
+    height: 100%;
+}
+
+.contt .rech {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
+}
+
+.contt .rech .item {
+    flex: 1;
+}
+
+.contt .khdem {
+    flex: 6;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
+    margin-top: 5%;
+    flex-wrap: wrap;
+}
